@@ -1,0 +1,148 @@
+CREATE TABLE `restaurant`.`restaurant` (
+	id int auto_increment primary key,
+    res_name varchar(255) not null,
+    res_address varchar(255) not null,
+    descrip varchar(255)
+);
+
+create table `restaurant`.`Tble` (
+	id int auto_increment primary key,
+    tblname varchar(255) not null,
+    maxGuest int not null,
+    desscrip varchar(255),
+    id_res int,
+    foreign key (id_res) references restaurant(id)
+);
+
+create table `restaurant`.`customer` (
+	id int auto_increment primary key,
+    cus_name varchar(255) not null,
+    address varchar(255) not null,
+    email varchar(255) not null,
+    tel_number varchar(255) not null
+);
+
+create table `restaurant`.`staff_user` (
+	id int auto_increment primary key,
+    staff_name varchar(255) not null,
+    username varchar(255) not null,
+    pass varchar(255) not null,
+    position varchar(255) not null
+);
+
+create table `restaurant`.`bill` (
+    id int auto_increment primary key,
+    oder_time datetime not null,
+    guest_num int not null,
+    checkout_time datetime,
+    discount float(10),
+    note varchar(255),
+    id_cus int,
+    id_user int,
+    foreign key (id_cus) references customer(id),
+    foreign key (id_user) references staff_user(id)
+);
+
+create table `restaurant`.`OderedTable` (
+	id int auto_increment primary key,
+    price float(10) not null,
+    discount float(10),
+    checkin boolean,
+    id_tbl int,
+    id_bill int,
+    foreign key (id_tbl) references Tble(id),
+    foreign key (id_bill) references bill(id)
+    
+);
+
+create table `restaurant`.`dish` (
+	id int auto_increment primary key,
+    name_dish varchar(255) not null,
+    type_dish varchar(255) not null,
+    price float(10) not null
+);
+
+create table `restaurant`.`combo` (
+	id int auto_increment primary key,
+    name_combo varchar(255) not null
+);
+
+create table `restaurant`.`dish_in_combo` (
+	id int auto_increment primary key,
+    amount int not null,
+    discount float(10),
+    id_dish int,
+    id_combo int,
+    foreign key (id_dish) references dish(id),
+    foreign key (id_combo) references combo(id)
+);
+
+create table `restaurant`.`odered_dish` (
+	id int auto_increment primary key,
+    amount int not null,
+    total_price float(10) not null,
+    id_dish int,
+    id_odertbl int,
+    foreign key (id_dish) references dish(id),
+    foreign key (id_odertbl) references OderedTable(id)
+);
+
+create table `restaurant`.`odered_combo` (
+	id int auto_increment primary key,
+    amount int not null,
+    total_price float(10) not null,
+    id_combo int,
+    id_odertbl int,
+    foreign key (id_combo) references combo(id),
+    foreign key (id_odertbl) references OderedTable(id)
+);
+
+INSERT INTO `restaurant`.`restaurant` (`res_name`, `res_address`, `descrip`) VALUES ('LongLe', 'Ha Noi', 'cool');
+
+INSERT INTO `restaurant`.`staff_user` (`staff_name`, `username`, `pass`, `position`) VALUES ('Long', 'long11', 'admin', 'Le Tan');
+INSERT INTO `restaurant`.`staff_user` (`staff_name`, `username`, `pass`, `position`) VALUES ('A', 'admin', 'admin', 'quan ly');
+INSERT INTO `restaurant`.`staff_user` (`staff_name`, `username`, `pass`, `position`) VALUES ('B', 'boiban', 'admin', 'boi ban');
+
+INSERT INTO `restaurant`.`customer` (`cus_name`, `address`, `email`, `tel_number`) VALUES ('Nguyen A', 'HN', 'Ang@mail.com', '0125648665');
+INSERT INTO `restaurant`.`customer` (`cus_name`, `address`, `email`, `tel_number`) VALUES ('Nguyen Van A', 'HP', 'VanA@mail.com', '0651566556');
+INSERT INTO `restaurant`.`customer` (`cus_name`, `address`, `email`, `tel_number`) VALUES ('Nguyen An', 'HD', 'AnNg@mail.com', '0554898898');
+INSERT INTO `restaurant`.`customer` (`cus_name`, `address`, `email`, `tel_number`) VALUES ('Le Anh', 'HL', 'LeAnh@mail.com', '0254894487');
+INSERT INTO `restaurant`.`customer` (`cus_name`, `address`, `email`, `tel_number`) VALUES ('Tran B', 'HD', 'Btran@mail.com', '0564646468');
+INSERT INTO `restaurant`.`customer` (`cus_name`, `address`, `email`, `tel_number`) VALUES ('Ly Bi', 'VT', 'BILy@mail.com', '0568654854');
+INSERT INTO `restaurant`.`customer` (`cus_name`, `address`, `email`, `tel_number`) VALUES ('Vo Anh', 'TN', 'Naf@mail.com', '0564644488');
+INSERT INTO `restaurant`.`customer` (`cus_name`, `address`, `email`, `tel_number`) VALUES ('Ta Ton', 'LC', 'Ton@mail.com', '0211545656');
+
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Ga Luoc(ca con)', 'Mon chinh', '200');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Rau muong luoc', 'Mon rau', '50');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Salat', 'Mon rau', '25');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Coca', 'Do uong', '20');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Pesi', 'Do uong', '20');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Thi kho tau', 'Mon chinh', '100');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Ca ran', 'Mon chinh', '150');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Canh cua', 'Mon chinh', '200');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Ga luoc(nua con)', 'Mon chinh', '125');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Cam ep', 'Do uong', '25');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Khoai tay chien', 'Khai vi', '50');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Khoai Lang chien', 'Khai vi', '50');
+INSERT INTO `restaurant`.`dish` (`name_dish`, `type_dish`, `price`) VALUES ('Ngo chien', 'Khai vi', '50');
+
+INSERT INTO `restaurant`.`combo` (`name_combo`) VALUES ('Bua trua vui ve');
+INSERT INTO `restaurant`.`combo` (`name_combo`) VALUES ('family dinner');
+INSERT INTO `restaurant`.`combo` (`name_combo`) VALUES ('combo coca');
+INSERT INTO `restaurant`.`combo` (`name_combo`) VALUES ('combo pesi');
+
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('1', '0.2', '6', '1');
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('1', '0.2', '3', '1');
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('1', '0.2', '4', '1');
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('1', '0.15', '1', '2');
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('1', '0.15', '2', '2');
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('1', '0.15', '6', '2');
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('4', '0.25', '4', '2');
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('4', '0.25', '4', '3');
+INSERT INTO `restaurant`.`dish_in_combo` (`amount`, `discount`, `id_dish`, `id_combo`) VALUES ('5', '0.25', '5', '4');
+
+INSERT INTO `restaurant`.`bill` (`oder_time`, `guest_num`, `id_cus`, `id_user`) VALUES ('2020-08-05 11:00:00', '8', '2', '1');
+INSERT INTO `restaurant`.`bill` (`oder_time`, `guest_num`, `id_cus`, `id_user`) VALUES ('2020-08-10 11:00:00', '6', '3', '1');
+INSERT INTO `restaurant`.`bill` (`oder_time`, `guest_num`, `id_cus`, `id_user`) VALUES ('2020-08-11 18:00:00', '10', '5', '1');
+
+
