@@ -45,7 +45,7 @@ create table `restaurant`.`bill` (
 
 create table `restaurant`.`OderedTable` (
 	id int auto_increment primary key,
-    price float(10) not null,
+    price float(10),
     discount float(10),
     checkin boolean,
     id_tbl int,
@@ -145,4 +145,23 @@ INSERT INTO `restaurant`.`bill` (`oder_time`, `guest_num`, `id_cus`, `id_user`) 
 INSERT INTO `restaurant`.`bill` (`oder_time`, `guest_num`, `id_cus`, `id_user`) VALUES ('2020-08-10 11:00:00', '6', '3', '1');
 INSERT INTO `restaurant`.`bill` (`oder_time`, `guest_num`, `id_cus`, `id_user`) VALUES ('2020-08-11 18:00:00', '10', '5', '1');
 
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('101', '4', 'small', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('102', '4', 'small', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('103', '8', 'normal', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('104', '8', 'normal', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('105', '12', 'big', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('201', '4', 'small', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('202', '6', 'small+', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('203', '6', 'small+', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('204', '10', 'normal+', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('205', '10', 'normal+', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('301', '6', 'small+', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('302', '6', 'small+', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('303', '8', 'normal', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('304', '8', 'normal', '1');
+INSERT INTO `restaurant`.`tble` (`tblname`, `maxGuest`, `desscrip`, `id_res`) VALUES ('305', '16', 'big', '1');
+
+INSERT INTO `restaurant`.`oderedtable` (`discount`, `checkin`, `id_tbl`, `id_bill`) VALUES ('0.05', '1', '2', '1');
+INSERT INTO `restaurant`.`oderedtable` (`discount`, `checkin`, `id_tbl`, `id_bill`) VALUES ('0.05', '0', '6', '2');
+INSERT INTO `restaurant`.`oderedtable` (`discount`, `checkin`, `id_tbl`, `id_bill`) VALUES ('0.05', '0', '3', '3');
 
