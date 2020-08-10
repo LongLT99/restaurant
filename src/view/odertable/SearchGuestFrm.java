@@ -27,9 +27,9 @@ public class SearchGuestFrm extends javax.swing.JFrame {
      */
     public SearchGuestFrm(User user, Table table) {
         initComponents();
-        jButton2.setEnabled(false);
         this.us = user;
         this.tbl = table;
+        jButton2.setEnabled(false);
         
     }
     public SearchGuestFrm() {
@@ -71,6 +71,11 @@ public class SearchGuestFrm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Thêm khách");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Trở về");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -180,13 +185,16 @@ public class SearchGuestFrm extends javax.swing.JFrame {
             }
 	};
 	jTable1.setModel(tableModel);
-        
         if(ListCus.size() == 0){
-            System.out.println("okoko");
             jButton2.setEnabled(true);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        (new AddCustomerFrm(us, tbl)).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
