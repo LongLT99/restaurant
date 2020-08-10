@@ -9,9 +9,8 @@ package view.user;
  *
  * @author MyPC
  */
-import javax.swing.JOptionPane;
 import model.User;
-import view.table.SearchTableFrm;
+import view.odertable.SearchTableFrm;
 public class LeTanFrm extends javax.swing.JFrame {
     private User us;
     /**
