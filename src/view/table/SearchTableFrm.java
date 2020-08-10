@@ -10,9 +10,10 @@ import model.User;
 import model.Table;
 import DAO.TableDAO;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 import view.user.LeTanFrm;
 
 /**
@@ -23,6 +24,7 @@ public class SearchTableFrm extends javax.swing.JFrame {
     private ArrayList<Table> ListTable;
     private User us;
     private SearchTableFrm mainFrm;
+    private DefaultTableModel ResultTable;
     
     public SearchTableFrm(User user) {
         initComponents();
@@ -38,6 +40,8 @@ public class SearchTableFrm extends javax.swing.JFrame {
     public SearchTableFrm() {
         initComponents();
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,11 +187,31 @@ public class SearchTableFrm extends javax.swing.JFrame {
         Date jtime = new Date();
         jtime = (Date) jordertime.getValue();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        System.out.println("so khach:" + max+ "  time" + sdf.format(jtime));
-        Date intime = new Date();
-        Date outtime = new Date();
-//        ListTable = tb.searchTable(max, intime,intime);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(jtime);
+        cal.add(Calendar.HOUR, -1);
+        cal.add(Calendar.MINUTE, -30);
+        Date intime = cal.getTime();
+        cal.add(Calendar.HOUR, 3);
+        Date outtime = cal.getTime();
+        ListTable = tb.searchTable(max, intime,outtime);
+        
+        String[] columnNames = {"ID", "Tên bàn", "Số khách tối đa", "Mô tả"};
+			String[][] value = new String[ListTable.size()][4];
+			for(int i=0; i<ListTable.size(); i++){
+				value[i][0] = ListTable.get(i).getId() +"";
+				value[i][1] = ListTable.get(i).getTblname();
+				value[i][2] = ListTable.get(i).getMaxGuest()+"";
+				value[i][3] = ListTable.get(i).getDescrip();
+			}
+			DefaultTableModel tableModel = new DefaultTableModel(value, columnNames) {
+			    @Override
+			    public boolean isCellEditable(int row, int column) {
+			       //unable to edit cells
+			       return false;
+			    }
+			};
+			jTable1.setModel(tableModel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -25,23 +25,20 @@ public class TableDAO extends DAO {
     
     public ArrayList<Table> searchTable(int key, Date intime, Date outtime){
         ArrayList<Table> result = new ArrayList<Table>();
-        String sql = "(SELECT tb.id FROM oderedtable AS ot INNER JOIN tble AS tb ON ot.id_tbl = tb.id" +
-                        "INNER JOIN bill AS b ON ot.id_bill = b.id WHERE b.oder_time between \"?\"" +
-                        "and \"?\") AND t.maxGuest >= ?";
+        String sql = "SELECT t.id, t.tblname, t.maxGuest, t.descrip FROM tble AS t WHERE t.maxGuest >= ? AND t.id NOT IN (SELECT tb.id FROM oderedtable AS ot INNER JOIN tble AS tb ON ot.id_tbl = tb.id INNER JOIN bill AS b ON ot.id_bill = b.id WHERE b.oder_time >= ? and b.oder_time <= ?)";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, sdf.format(intime));
-			ps.setString(2, sdf.format(outtime));
-			ps.setString(3, sdf.format(key));
+                        ps.setString(1, key+"");
+			ps.setString(2, sdf.format(intime));
+			ps.setString(3, sdf.format(outtime));
 			ResultSet rs = ps.executeQuery();
-			
 			while(rs.next()) {
 				Table t = new Table();
 				t.setId(rs.getInt("id"));
-				t.setTblname(rs.getString("name"));
-				t.setMaxGuest(rs.getInt("max"));
-				t.setDescrip(rs.getString("des"));
+				t.setTblname(rs.getString("tblname"));
+				t.setMaxGuest(rs.getInt("maxGuest"));
+				t.setDescrip(rs.getString("descrip"));
 				result.add(t);
 			}			
 		}catch(Exception e) {
