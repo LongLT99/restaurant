@@ -11,18 +11,18 @@ package model;
  */
 
 import java.io.Serializable;
-public class customer implements  Serializable{
+public class Customer implements  Serializable{
     private int id;
     private String cus_name;
     private String address;
     private String email;
     private String tel_number;
 
-    public customer() {
+    public Customer() {
         super();
     }
     
-    public customer(int id, String cus_name, String address, String email, String tel_number){
+    public Customer(int id, String cus_name, String address, String email, String tel_number){
         super();
         this.id = id;
         this.cus_name = cus_name;

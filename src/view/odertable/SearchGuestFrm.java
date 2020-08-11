@@ -8,27 +8,32 @@ package view.odertable;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.Table;
-import model.customer;
+import model.Customer;
 import model.User;
 import DAO.CustomerDAO;
+import java.util.Date;
+import javax.swing.JOptionPane;
 /**
  *
  * @author MyPC
  */
 public class SearchGuestFrm extends javax.swing.JFrame {
     
-    private ArrayList<customer> ListCus;
+    private ArrayList<Customer> ListCus;
     private User us;
     private Table tbl;
     private SearchGuestFrm mainFrm;
     private DefaultTableModel ResultTable;
+    private Date ordertime;
+
     /**
      * Creates new form SearchGuestFrm
      */
-    public SearchGuestFrm(User user, Table table) {
+    public SearchGuestFrm(User user, Table table, Date odtime) {
         initComponents();
         this.us = user;
         this.tbl = table;
+        this.ordertime = (Date) odtime;
         jButton2.setEnabled(false);
         
     }
@@ -103,6 +108,11 @@ public class SearchGuestFrm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton4.setText("Tiệp tục");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,9 +203,20 @@ public class SearchGuestFrm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        (new AddCustomerFrm(us, tbl)).setVisible(true);
+        (new AddCustomerFrm(us, tbl, ordertime)).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Please select 1 row");
+        }else{
+            (new BillFrm(us, tbl,ListCus.get(row),ordertime)).setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

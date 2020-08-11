@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.customer;
+import model.Customer;
 
 /**
  *
@@ -22,8 +22,8 @@ public class CustomerDAO extends DAO{
         super();
     }
     
-    public ArrayList<customer> searchCustomer(String name){
-        ArrayList<customer> result = new ArrayList<customer>();
+    public ArrayList<Customer> searchCustomer(String name){
+        ArrayList<Customer> result = new ArrayList<Customer>();
 		String sql = "SELECT * FROM customer WHERE cus_name LIKE ?";
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -31,7 +31,7 @@ public class CustomerDAO extends DAO{
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()){
-				customer cus = new customer();
+				Customer cus = new Customer();
 				cus.setId(rs.getInt("id"));
 				cus.setCus_name(rs.getString("cus_name"));
 				cus.setAddress(rs.getString("address"));
@@ -45,7 +45,7 @@ public class CustomerDAO extends DAO{
 		return result;
     }
     
-    public boolean addCustomer(customer cus) throws SQLException{
+    public boolean addCustomer(Customer cus) throws SQLException{
         String sql = "INSERT INTO customer (cus_name, address, email, tel_number) VALUES (?, ?, ?, ?)";
         try{
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

@@ -129,6 +129,9 @@ public class LoginFrm extends javax.swing.JFrame {
 				}else if(user.getPosition().equalsIgnoreCase("boi ban")) {
                                         (new BoiBanFrm(user)).setVisible(true);
                                         this.dispose();
+                                }else if(user.getPosition().equalsIgnoreCase("quan ly")) {
+                                        (new QuanLiFrm(user)).setVisible(true);
+                                        this.dispose();
                                 }
 			}else {
                             JOptionPane.showMessageDialog(this, "Incorrect username and/or password!");

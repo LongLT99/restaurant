@@ -6,13 +6,14 @@
 package view.odertable;
 
 import DAO.CustomerDAO;
+import java.util.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Table;
 import model.User;
-import model.customer;
+import model.Customer;
 
 /**
  *
@@ -23,16 +24,18 @@ public class AddCustomerFrm extends javax.swing.JFrame {
     /**
      * Creates new form AddCustomerFrm
      */
-    private customer cus;
+    private Customer cus;
     private User us;
     private Table tbl;
-    private AddCustomerFrm mainFrm;    
+    private AddCustomerFrm mainFrm;
+    private Date ordertime;
 
-    public AddCustomerFrm(User user, Table table) {
+    public AddCustomerFrm(User user, Table table, Date odtime) {
         initComponents();
         this.us = user;
         this.tbl = table;
-        cus = new customer();
+        cus = new Customer();
+        this.ordertime = (Date) odtime;
     }
 
     public AddCustomerFrm() {
@@ -157,7 +160,6 @@ public class AddCustomerFrm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println(nameText.getText());
         cus.setCus_name(nameText.getText());
         cus.setAddress(addressText.getText());
         cus.setEmail(mailText.getText());
@@ -167,7 +169,7 @@ public class AddCustomerFrm extends javax.swing.JFrame {
         try {
             if(cd.addCustomer(cus)) {
                 JOptionPane.showMessageDialog(this, "The customer is succeffully added!");
-                (new SearchGuestFrm(us, tbl)).setVisible(true);
+                (new SearchGuestFrm(us, tbl, ordertime)).setVisible(true);
                 this.dispose();
                 
             }

@@ -9,7 +9,6 @@ package view.odertable;
 import model.User;
 import model.Table;
 import DAO.TableDAO;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -188,9 +187,11 @@ public class SearchTableFrm extends javax.swing.JFrame {
         // TODO add your handling code here:
         TableDAO tb = new TableDAO();
         int max = Integer.parseInt(jmaxGuest.getValue().toString());
+        //order time
         Date jtime = new Date();
         jtime = (Date) jordertime.getValue();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        //set time
         Calendar cal = Calendar.getInstance();
         cal.setTime(jtime);
         cal.add(Calendar.HOUR, -1);
@@ -199,7 +200,7 @@ public class SearchTableFrm extends javax.swing.JFrame {
         cal.add(Calendar.HOUR, 3);
         Date outtime = cal.getTime();
         ListTable = tb.searchTable(max, intime,outtime);
-        
+        //output table
         String[] columnNames = {"ID", "Tên bàn", "Số khách tối đa", "Mô tả"};
         String[][] value = new String[ListTable.size()][4];
         for(int i=0; i<ListTable.size(); i++){
@@ -225,8 +226,10 @@ public class SearchTableFrm extends javax.swing.JFrame {
         if(row == -1){
             JOptionPane.showMessageDialog(this, "Please select 1 row");
         }else{
-            (new SearchGuestFrm(us, ListTable.get(row))).setVisible(true);
-            mainFrm.dispose();
+            Date jtime = new Date();
+            jtime = (Date) jordertime.getValue();
+            (new SearchGuestFrm(us, ListTable.get(row), jtime)).setVisible(true);
+            this.dispose();
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
