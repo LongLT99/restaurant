@@ -7,6 +7,8 @@ package DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import model.customer;
 
@@ -41,6 +43,27 @@ public class CustomerDAO extends DAO{
 			e.printStackTrace();
 		}
 		return result;
+    }
+    
+    public boolean addCustomer(customer cus) throws SQLException{
+        String sql = "INSERT INTO customer (cus_name, address, email, tel_number) VALUES (?, ?, ?, ?)";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, cus.getCus_name());
+            ps.setString(2, cus.getAddress());
+            ps.setString(3, cus.getEmail());
+            ps.setString(4, cus.getTel_number());
+            
+            ps.executeUpdate();
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if(generatedKeys.next()){
+                cus.setId(generatedKeys.getInt(1));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
     
 }
