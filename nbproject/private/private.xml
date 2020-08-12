@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetBeansProjects/restaurant/src/view/odertable/AddCustomerFrm.java</file>
+            <file>file:/D:/NetBeansProjects/restaurant/src/model/User.java</file>
             <file>file:/D:/NetBeansProjects/restaurant/src/view/odertable/SearchGuestFrm.java</file>
+            <file>file:/D:/NetBeansProjects/restaurant/src/model/Bill.java</file>
+            <file>file:/D:/NetBeansProjects/restaurant/src/DAO/UserDAO.java</file>
             <file>file:/D:/NetBeansProjects/restaurant/src/view/user/LeTanFrm.java</file>
+            <file>file:/D:/NetBeansProjects/restaurant/src/DAO/OrderTableDAO.java</file>
+            <file>file:/D:/NetBeansProjects/restaurant/src/model/Customer.java</file>
             <file>file:/D:/NetBeansProjects/restaurant/src/view/user/LoginFrm.java</file>
-            <file>file:/D:/NetBeansProjects/restaurant/src/model/customer.java</file>
             <file>file:/D:/NetBeansProjects/restaurant/src/view/odertable/SearchTableFrm.java</file>
+            <file>file:/D:/NetBeansProjects/restaurant/src/view/odertable/BillFrm.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,12 +5,15 @@
  */
 package view.odertable;
 
+import DAO.OrderTableDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Table;
 import model.User;
 import model.Customer;
+import view.user.LeTanFrm;
 
 /**
  *
@@ -153,6 +156,11 @@ public class BillFrm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Hủy");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Thời gian đặt:");
 
@@ -214,9 +222,24 @@ public class BillFrm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println(cus.getCus_name());
-        System.out.println(tbl.getTblname());
+        OrderTableDAO bd = new OrderTableDAO();     
+        boolean order = bd.addBill(us ,tbl, cus, ordertime);
+        if(order == true){
+            JOptionPane.showMessageDialog(this, "Table has been ordered!");
+            (new LeTanFrm(us)).setVisible(true);
+            this.dispose();
+        }else {
+            JOptionPane.showMessageDialog(this, "Some thing wrong of this table already had been ordered!");
+            (new SearchTableFrm(us)).setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        (new SearchTableFrm(us)).setVisible(true);
+	this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

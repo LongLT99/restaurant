@@ -30,44 +30,44 @@ public class User implements Serializable {
         this.pass = pass;
         this.position = position;
     }
-    
+
     public int getId() {
-	return id;
+        return id;
     }
 
-    public void setId(int id) {
-	this.id = id;
-    }
-    
     public String getStaff_name() {
         return Staff_name;
     }
-    
-    public void setStaff_name(String Staff_name){
-        this.Staff_name = Staff_name;
-    }
 
     public String getUsername() {
-	return username;
+        return username;
     }
 
-    public void setUsername(String username) {
-	this.username = username;
-    }
-    
     public String getPass() {
         return pass;
     }
-    
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-    
+
     public String getPosition() {
         return position;
     }
-    
-    public void setPosition(String position ) {
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setStaff_name(String Staff_name) {
+        this.Staff_name = Staff_name;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public void setPosition(String position) {
         this.position = position;
     }
     

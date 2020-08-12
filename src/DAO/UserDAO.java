@@ -17,7 +17,7 @@ public class UserDAO extends DAO{
     
     public boolean checkLogin(User user){
         boolean result = false;
-        String sql = "SELECT staff_name,position FROM staff_user WHERE username = ? AND pass = ?";
+        String sql = "SELECT id,staff_name,position FROM staff_user WHERE username = ? AND pass = ?";
         try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
@@ -26,6 +26,7 @@ public class UserDAO extends DAO{
 			if(rs.next()) {
 				user.setStaff_name(rs.getString("staff_name"));
 				user.setPosition(rs.getString("position"));
+                                user.setId(rs.getInt("id"));
 				result = true;
 			}
 		}catch(Exception e) {

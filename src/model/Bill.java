@@ -19,6 +19,8 @@ public class Bill implements Serializable {
     private Date checkout_time;
     private float discount;
     private String note;
+    private User user;
+    private Customer customer;
 
     public Bill() {
         super();
@@ -32,6 +34,8 @@ public class Bill implements Serializable {
         this.checkout_time = checkout_time;
         this.discount = discount;
         this.note = note;
+        this.customer = customer;
+        this.user = user;
     }
 
     public int getId() {
@@ -58,6 +62,14 @@ public class Bill implements Serializable {
         return note;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -81,5 +93,12 @@ public class Bill implements Serializable {
     public void setNote(String note) {
         this.note = note;
     }   
-    
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }

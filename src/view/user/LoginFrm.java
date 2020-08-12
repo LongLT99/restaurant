@@ -119,23 +119,23 @@ public class LoginFrm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         User user = new User();
-			user.setUsername(jTextField1.getText());
-			user.setPass(jPasswordField1.getText());
-			UserDAO ud = new UserDAO();
-			if(ud.checkLogin(user)) {
-				if(user.getPosition().equalsIgnoreCase("Le Tan")) {
-                                        (new LeTanFrm(user)).setVisible(true);
-					this.dispose();
-				}else if(user.getPosition().equalsIgnoreCase("boi ban")) {
-                                        (new BoiBanFrm(user)).setVisible(true);
-                                        this.dispose();
-                                }else if(user.getPosition().equalsIgnoreCase("quan ly")) {
-                                        (new QuanLiFrm(user)).setVisible(true);
-                                        this.dispose();
-                                }
-			}else {
-                            JOptionPane.showMessageDialog(this, "Incorrect username and/or password!");
-			}
+	user.setUsername(jTextField1.getText());
+	user.setPass(jPasswordField1.getText());
+	UserDAO ud = new UserDAO();
+	if(ud.checkLogin(user)) {
+            if(user.getPosition().equalsIgnoreCase("Le Tan")) {
+                (new LeTanFrm(user)).setVisible(true);
+                this.dispose();
+            }else if(user.getPosition().equalsIgnoreCase("boi ban")) {
+                (new BoiBanFrm(user)).setVisible(true);
+                this.dispose();
+            }else if(user.getPosition().equalsIgnoreCase("quan ly")) {
+                (new QuanLiFrm(user)).setVisible(true);
+                this.dispose();
+            }
+        }else {
+            JOptionPane.showMessageDialog(this, "Incorrect username and/or password!");
+	}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
