@@ -10,7 +10,7 @@ package view.user;
  * @author MyPC
  */
 import model.User;
-import view.odertable.SearchTableFrm;
+import view.LeTan.SearchTableFrm;
 public class LeTanFrm extends javax.swing.JFrame {
     private User us;
     /**

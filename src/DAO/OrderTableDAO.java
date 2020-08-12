@@ -35,7 +35,7 @@ public class OrderTableDAO extends DAO{
         b = new Bill();
         ot = new Odered_table();
         String sqlAddBill = "INSERT INTO bill (oder_time, guest_num, id_cus, id_user) VALUES (?, ?, ?, ?)";
-        String sqlOrderRoom = "INSERT INTO oderedtable (checkin, id_tbl, id_bill) VALUES ( 0, ?, ?)";
+        String sqlOrderRoom = "INSERT INTO oderedtable (price, checkin, id_tbl, id_bill) VALUES ( 200, 0, ?, ?)";
         String sqlcheckOrderRoom = "SELECT * FROM oderedtable AS ot INNER JOIN bill AS b ON ot.id_bill = b.id WHERE b.oder_time >= ? AND b.oder_time <= ? AND ot.id_tbl = ?";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //khoang thoi gian dat ban
